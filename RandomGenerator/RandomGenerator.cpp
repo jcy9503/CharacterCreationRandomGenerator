@@ -34,6 +34,7 @@ void CutZero(string& param)
 		if(param[i] == '\0') break;
 		++i;
 	}
+	param.resize(length);
 }
 
 int main(int argc, char* argv[])
@@ -58,7 +59,7 @@ int main(int argc, char* argv[])
 		string copyText;
 
 		cout << "1: (00), 2: (000), 3: (0.00)~(1.00), 4: (-1.00)~(1.00)\n"
-			"5: (0, 0, 0), 6: (0, 0, 0, 0)" << endl;
+			"5: (0, 0, 0), 6: (0, 0, 0, 0), 0: Terminate Program" << endl;
 
 		int num;
 		cin >> num;
