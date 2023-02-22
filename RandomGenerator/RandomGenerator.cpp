@@ -11,15 +11,28 @@ using namespace std;
 
 void CutZero(string& param)
 {
-	if (param[0] == '-')
+	const int jump = 4;
+	int length = param.length();
+	int i = 0;
+	
+	while(true)
 	{
-		for (int i = 5; i < 9; ++i)
-			param[i] = '\0';
-	}
-	else
-	{
-		for (int i = 4; i < 8; ++i)
-			param[i] = '\0';
+		
+		if(param[i] == '-')
+		{
+			i += 5;
+			for(int j = i; j+jump <= length; ++j)
+				param[j] = param[j+jump];
+		}
+		else
+		{
+			i += 4;
+			for(int j = i; j+jump <= length; ++j)
+				param[j] = param[j+jump];
+		}
+		length -= jump;
+		if(param[i] == '\0') break;
+		++i;
 	}
 }
 
@@ -35,6 +48,7 @@ int main(int argc, char* argv[])
 
 	bool flag = true;
 
+	cout << "How many copied value?" << endl;
 	int copyNum;
 	cin >> copyNum;
 
@@ -67,23 +81,21 @@ int main(int argc, char* argv[])
 			break;
 		case 3:
 			copyText = to_string(round(plus(gen) * 100) / 100);
-			CutZero(copyText);
 			for (int i = 0; i < copyNum - 1; ++i)
 			{
 				string tmp = to_string(round(plus(gen) * 100) / 100);
-				CutZero(tmp);
 				copyText += "\n" + tmp;
 			}
+			CutZero(copyText);
 			break;
 		case 4:
 			copyText = to_string(round(minus(gen) * 100) / 100);
-			CutZero(copyText);
 			for (int i = 0; i < copyNum - 1; ++i)
 			{
 				string tmp = to_string(round(minus(gen) * 100) / 100);
-				CutZero(tmp);
 				copyText += "\n" + tmp;
 			}
+			CutZero(copyText);
 			break;
 		case 5:
 			copyText = "(" + to_string(color(gen)) + "," + to_string(color(gen)) +
