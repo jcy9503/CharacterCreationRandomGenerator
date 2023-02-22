@@ -9,6 +9,12 @@
 
 using namespace std;
 
+void CutZero(string& param)
+{
+    for(int i = 4; i < 8; ++i)
+        param[i] = '\0';
+}
+
 int main(int argc, char* argv[])
 {
     random_device rd;
@@ -39,9 +45,11 @@ int main(int argc, char* argv[])
             break;
         case 2:
             copyText = to_string(round(plus(gen)*100)/100);
+            CutZero(copyText);
             break;
         case 3:
             copyText = to_string(round(minus(gen)*100)/100);
+            CutZero(copyText);
             break;
         case 4:
             copyText = "(" + to_string(color(gen)) + "," + to_string(color(gen)) +
